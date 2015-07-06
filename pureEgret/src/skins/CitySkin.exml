@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="480" height="800" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:Button id="btnBuild" label="建造" x="20" y="737"/>
+	<e:Button id="btnLeague" label="军团" x="170" y="737"/>
+	<e:Button id="btnTroops" label="军队" x="319" y="737"/>
+	<e:TextArea id="txtCityInfo" x="19" y="514" width="434" height="209" text="hello!"/>
+</e:Skin>
