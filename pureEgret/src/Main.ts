@@ -55,11 +55,11 @@ class Main extends pureEgret.Client
     * */
     private createScene():void
     {
-        //注册完毕plugin后，开始游戏流程！
+        //注册完毕plugin后，开始游戏流程！(推荐方式)
         app.GM.getInstance().setupMgr.setupPlugins();
         app.GM.getInstance().setupMgr.start();
         
-        //也可以直接写在这里
+        //也可以直接写在这里(可选方式)
 //        app.GM.getInstance().loaderMgr.registerPlugin(app.PLUGIN.CITY,app.City);
 //        app.GM.getInstance().loaderMgr.registerPlugin(app.PLUGIN.BUILD,app.Build);
 //        
