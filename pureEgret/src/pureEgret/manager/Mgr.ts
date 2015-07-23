@@ -7,7 +7,7 @@ module pureEgret
     * 如：public get loader():pureEgret.LoaderManager
     * 
     * 如：
-    * 调用该方法setup管理类。this.super_setupManager(pureEgret.LoaderManager);
+    * 调用该方法setup管理类。this.super_setupManager("LoaderManager",pureEgret.LoaderManager);
     * 
     * 
     * */
@@ -25,25 +25,25 @@ module pureEgret
             this._stage = s;
             this._facade = fa;
 
-            this.super_setupManager(pureEgret.LoaderManager);
+            this.super_setupManager("LoaderManager",pureEgret.LoaderManager);
             this.override_setup_game_managers();
             this.loaderMgr.setupGUI(theme,res);
         }
 
         private _managers:Object = {};
-        public super_setupManager(managerClass:any):void
+        public super_setupManager(key:string,managerClass:any):void
         {
             var imgr:pureEgret.IManager = <pureEgret.IManager> new managerClass();
             if(imgr)
             {
-                if(!this._managers [managerClass+""])
+                if(!this._managers [key+""])
                 {
-                    this._managers [managerClass+""] = imgr;
+                    this._managers [key+""] = imgr;
                     imgr.setup(this._stage,this._facade);
-                    console.log("[core] set up manager "+managerClass);
+                    console.log("[core] set up manager "+key);
                 }else
                 {
-                    throw Error("[core] error manager exist already -> "+ managerClass);
+                    console.warn("[core] error manager exist already -> "+ key);
                 }
 
             }
@@ -52,10 +52,10 @@ module pureEgret
         /**
          * get manager by class
          */
-        protected  super_getManager(managerClass:Function):any
+        protected  super_getManager(key:string):any
         {
             var mgr:any;
-            mgr = this._managers[managerClass+""];
+            mgr = this._managers[key+""];
             return mgr;
         }
 
@@ -64,7 +64,7 @@ module pureEgret
          */
         protected override_setup_game_managers():void
         {
-            throw Error("请使用父类的super_setupManager(managerClass:Class)方法 扩展管理器！");
+            throw Error("请使用父类的super_setupManager(key:string)方法 扩展管理器！");
         }
 
         /**
@@ -73,7 +73,7 @@ module pureEgret
         public get loaderMgr():pureEgret.LoaderManager
         {
             var ldr:pureEgret.LoaderManager;
-            ldr = <pureEgret.LoaderManager>this.super_getManager(pureEgret.LoaderManager);
+            ldr = <pureEgret.LoaderManager>this.super_getManager("LoaderManager");
             return ldr;
         }
         
